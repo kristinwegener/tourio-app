@@ -1,8 +1,11 @@
 // import { places } from "../../../../lib/db.js";
 import useSWR from "swr";
 import Place from "@/db/models/Places.js";
+import dbConnect from "@/db/connect";
 
 export default async function handler(request, response) {
+  await dbConnect();
+
   const { id } = request.query;
 
   if (!id) {
@@ -18,13 +21,13 @@ export default async function handler(request, response) {
     console.log("hit the update part");
     const placeData = request.body;
     await Place.findByIdAndUpdate(id, placeData);
-    response.status(200).json({ status: "Place successfully updated" });
+    return response.status(200).json({ status: "Place successfully updated" });
   }
 
   if (request.method === "DELETE") {
     console.log("about to delete");
     await Place.findByIdAndDelete(id);
-    response.status(200).json({ status: "Place Deleted" });
+    return response.status(200).json({ status: "Place Deleted" });
   } else {
     return response.status(405).json({ message: "Method not allowed" });
   }
