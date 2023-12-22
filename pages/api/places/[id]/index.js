@@ -1,6 +1,7 @@
 // import { places } from "../../../../lib/db.js";
 import useSWR from "swr";
 import Place from "@/db/models/Places.js";
+import dbConnect from "@/db/connect";
 
 export default async function handler(request, response) {
   await dbConnect();
