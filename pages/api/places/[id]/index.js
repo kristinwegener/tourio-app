@@ -12,6 +12,19 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     const place = await Place.findById(id);
     return response.status(200).json(place);
+  }
+
+  if (request.method === "PATCH") {
+    console.log("hit the update part");
+    const placeData = request.body;
+    await Place.findByIdAndUpdate(id, placeData);
+    response.status(200).json({ status: "Place successfully updated" });
+  }
+
+  if (request.method === "DELETE") {
+    console.log("about to delete");
+    await Place.findByIdAndDelete(id);
+    response.status(200).json({ status: "Place Deleted" });
   } else {
     return response.status(405).json({ message: "Method not allowed" });
   }
