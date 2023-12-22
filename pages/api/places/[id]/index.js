@@ -1,17 +1,23 @@
-import { places } from "../../../../lib/db.js";
+// import { places } from "../../../../lib/db.js";
+import useSWR from "swr";
+import Place from "@/db/models/Places.js";
 
-export default function handler(request, response) {
+export default async function handler(request, response) {
   const { id } = request.query;
 
   if (!id) {
     return;
   }
 
-  const place = places.find((place) => place.id === id);
-
-  if (!place) {
-    return response.status(404).json({ status: "Not found" });
+  if (request.method === "GET") {
+    const place = await Place.findById(id);
+    return response.status(200).json(place);
+  } else {
+    return response.status(405).json({ message: "Method not allowed" });
   }
-
-  response.status(200).json(place);
 }
+
+// const place = places.find((place) => place.id === id);
+// if (!place) {
+//   return response.status(404).json({ status: "Not found" });
+// }

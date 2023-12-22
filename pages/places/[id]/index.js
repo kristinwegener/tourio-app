@@ -30,12 +30,20 @@ const StyledLocationLink = styled(StyledLink)`
 
 export default function DetailsPage() {
   const router = useRouter();
-  const { isReady } = router;
   const { id } = router.query;
 
-  const { data: place, isLoading, error } = useSWR(`/api/places/${id}`);
+  const {
+    data: place,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR(`/api/places/${id}`, {
+    fallbackData: [],
+  });
 
-  if (!isReady || isLoading || error) return <h2>Loading...</h2>;
+  console.log(place);
+
+  if (isLoading || error) return <h2>Loading...</h2>;
 
   function deletePlace() {
     console.log("deleted?");

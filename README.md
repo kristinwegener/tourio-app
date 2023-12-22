@@ -6,9 +6,9 @@ In this project you will build a Tourio App, the best friend of all travelers: i
 
 ### Read Data
 
-- Set up a database; use the [`lib/db.json` file](lib/db.json) to insert sample data.
-- In `pages/api/index.js`, replace the `places` variable imported from `lib/db.js` with a `GET` request from your database.
-- Do the same in `pages/api/[id]/index.js` for the details page.
+[x] Set up a database; use the [`lib/db.json` file](lib/db.json) to insert sample data.
+[x] In `pages/api/index.js`, replace the `places` variable imported from `lib/db.js` with a `GET` request from your database.
+[x] Do the same in `pages/api/[id]/index.js` for the details page.
 
 ### Create Form
 
@@ -43,6 +43,7 @@ This is why we need to provide Vercel with the access details.
 1. In the dashboard of your Vercel project, navigate to "Settings".
 
 2. In the left-hand navigation, choose "Environment Variables".
+
    1. Add the key (`MONGODB_URI`) and the value (`mongodb+srv...`)
    2. Tick all environments (Production, Preview, and Development).
    3. Click "Save".
@@ -50,6 +51,7 @@ This is why we need to provide Vercel with the access details.
 3. At the bottom of this page, you should now see a new environment variable
 
 4. Redeploy your application:
+
    1. In the main navigation, choose "Deployments".
    2. Open the three dots next to your last deployment and choose "Redeploy".
 

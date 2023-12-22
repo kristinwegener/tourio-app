@@ -1,6 +1,7 @@
 import Link from "next/link.js";
 import styled from "styled-components";
 import { StyledImage } from "./StyledImage.js";
+import useSWR from "swr";
 
 const Article = styled.article`
   border: 5px solid black;
