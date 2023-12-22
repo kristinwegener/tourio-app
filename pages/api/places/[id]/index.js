@@ -3,6 +3,8 @@ import useSWR from "swr";
 import Place from "@/db/models/Places.js";
 
 export default async function handler(request, response) {
+  await dbConnect();
+
   const { id } = request.query;
 
   if (!id) {
